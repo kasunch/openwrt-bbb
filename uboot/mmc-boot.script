@@ -1,0 +1,38 @@
+setenv fdtfile /dtbs/am335x-boneblack.dtb;
+setenv bootfile /zImage
+setenv console ttyO0,115200n8;
+
+# Check if the boot button is pressed
+if gpio input gpio@481ac000_8; then
+    setenv mmc_targets 0 1
+else
+    setenv mmc_targets 1 0
+fi;
+
+echo "==> Boot order: ${mmc_targets}";
+
+for mmc_target in ${mmc_targets}; do
+    if mmc dev ${mmc_target}; then
+        echo "==> Found SD/MMC on device ${mmc_target}";
+
+        setenv devnum ${mmc_target};
+        setenv bootargs console=${console} root=/dev/mmcblk${devnum}p2 rootwait
+
+        if load mmc ${devnum}:1 ${loadaddr} ${bootfile}; then
+            echo "==> Loaded ${bootfile} from SD/MMC device ${devnum}:1";
+            
+            if load mmc ${devnum}:1 ${fdtaddr} ${fdtfile}; then
+                echo "==> Loaded ${fdtfile} from SD/MMC device ${devnum}:1";
+                echo "==> Booting ...";
+
+                bootz ${loadaddr} - ${fdtaddr};
+            else
+                echo "==> Cannot load ${fdtfile} from SD/MMC ${devnum}:1";
+            fi;
+        else
+            echo "==> Cannot load ${bootfile} from SD/MMC ${devnum}:1";
+        fi;
+    else
+        echo "==> No SD/MMC found on device ${mmc_target}";
+    fi;
+done

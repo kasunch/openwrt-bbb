@@ -1,0 +1,19 @@
+uci set network.usb=interface
+uci set network.usb.proto='static'
+uci set network.usb.device='usb0'
+uci set network.usb.ipaddr='192.168.100.1'
+uci set network.usb.netmask='255.255.255.252'
+
+uci set dhcp.usb=dhcp
+uci set dhcp.usb.interface='usb'
+uci set dhcp.usb.limit='150'
+uci set dhcp.usb.leasetime='12h'
+uci set dhcp.usb.start='2'
+uci set dhcp.usb.ra_flags='none'
+
+uci set network.lan.proto='dhcp'
+
+uci commit
+
+service network restart
+service dnsmasq restart
