@@ -3,7 +3,7 @@
 The official [Openwrt images](https://openwrt.org/toh/texas_instruments/beaglebone_black) for Beaglebone Black (BBB) lack some functionalities that many users expect in the default build.
 
 * Network connectivity via the **mimi USB** port.
-    * This requires ``kmod-usb-gadget-eth`` package installed and the kernel module ``g_ether`` loaded.
+    * This requires ``kmod-usb-gadget-eth``, ``kmod-usb-gadget-cdc-composite``, ``kmod-usb-net-cdc-subset``, ``kmod-usb-net-rndis`` packages installed and the kernel module ``g_ether`` loaded.
     * The IP address of the USB network interface is ``192.168.100.1``.
     * A DHCP server runs on this network interface making network connections easier.  
 

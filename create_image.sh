@@ -147,9 +147,9 @@ fi
 
 bin_dir="${output_dir}"
 
-packages="luci luci-app-ttyd kmod-ath9k-htc hostapd-mini "`
-            `"wpa-supplicant-mini kmod-usb-gadget-eth fdisk lsblk "`
-            `"blockdev dosfstools rsync"
+packages="luci kmod-ath9k-htc hostapd-mini wpa-supplicant-mini kmod-usb-gadget-eth "`
+            `"kmod-usb-gadget-cdc-composite kmod-usb-net-cdc-subset kmod-usb-net-rndis "`
+            `"fdisk lsblk blockdev dosfstools rsync"
 
 files_dir="${script_dir_full}/files"
 
