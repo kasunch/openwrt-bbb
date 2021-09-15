@@ -18,10 +18,10 @@ The official [Openwrt images](https://openwrt.org/toh/texas_instruments/beaglebo
 
     The onboard boot ROM searches for the second stage boot loader (SPL or MLO) in the following  order.
 
-    * S2 not pressed - ``MMC1`` (onboard eMMC), ``MMC0`` (SD card), ``UART0``, ``USB0``.
-    * S2 pressed - ``SPI0``, ``MMC0`` (SD card), ``USB0``, ``UART0``.
+    * S2 not pressed - MMC1 (onboard eMMC), MMC0 (SD card), UART0, USB0.
+    * S2 pressed - SPI0, MMC0 (SD card), USB0, UART0.
 
-    After the ``MLO`` has loaded the third stage boot loader, ``uBoot`` (``u-boot.img``), ``uBoot`` reads the boot script (``boot.scr``) and the boot environment file (``uEnv.txt``). In most of the builds, ``uBoot`` searches for the ``boot.scr`` and the ``uEnv.txt`` in the ``MMC0`` (SD card) first. This causes the BBB to boot from the SD card regardless of the status of the S2 button.
+    After the MLO has loaded the third stage boot loader, *uBoot* (``u-boot.img``), *uBoot* reads the boot script (``boot.scr``) and the boot environment file (``uEnv.txt``). In most of the builds, *uBoot* searches for the ``boot.scr`` and the ``uEnv.txt`` in the MMC0 (SD card) first. This causes the BBB to boot from the SD card regardless of the status of the S2 button.
 
     We address this problem by reading the status of the S2 button inside the  ``boot.scr`` to determine the boot device.    
 
