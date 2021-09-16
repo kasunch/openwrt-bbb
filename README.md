@@ -2,7 +2,7 @@
 
 The official [Openwrt images](https://openwrt.org/toh/texas_instruments/beaglebone_black) for Beaglebone Black (BBB) lack some functionalities that many users expect in the default build.
 
-* Network connectivity via the **mimi USB** port.
+* Network connectivity via the **mini USB** port.
     * The module ``g_ether`` provided by the package ``kmod-usb-gadget-eth`` creates a [RNDIS](https://docs.microsoft.com/en-us/windows-hardware/drivers/network/remote-ndis--rndis-2) compatible USB-to-Ethernet interface (typically ``usb0``) on the device. **Note: Windows systems might require (self) signed driver for the *Linux USB Ethernet/RNDIS Gadget* device to work. Otherwise, you will see only a serial port.**
     * The IP address of the ``usb0`` interface is ``192.168.100.1``.
     * A DHCP server runs on the ``usb0`` interface to allow the USB host device assign an IP address automatically.  
