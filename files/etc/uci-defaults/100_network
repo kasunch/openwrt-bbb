@@ -17,3 +17,5 @@ uci commit
 
 service network restart
 service dnsmasq restart
+
+exit 0
